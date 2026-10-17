@@ -17,7 +17,6 @@ public:
         int zero=0, one=0, mx;
         int d, res=0;
 
-        mp.insert({0, -1});
 
         for(int i=0; i<n; i++){
             if(nums[i]==0){
@@ -27,6 +26,11 @@ public:
             }
 
             d=zero-one;
+            if(d==0){
+                res=max(res, i+1);
+                continue;
+            }
+
             if(mp.find(d)!=mp.end()){
                 mx=i-mp[d];
                 res=max(res, mx);
@@ -47,7 +51,7 @@ public:
 
 int main(){
     Solution* sol = new Solution();
-    vector<int> nums = {0,1,0,1};
+    vector<int> nums = {0,1,1,1,1,1,0,0,0};
     int ans = sol->findMaxLength(nums);
     cout<< "max length: "<< ans << endl;
 
